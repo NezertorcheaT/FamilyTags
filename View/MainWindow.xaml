@@ -1,0 +1,66 @@
+﻿<Window x:Class="View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:View"
+        mc:Ignorable="d"
+        Title="Основное Окно" Height="450" Width="800" Icon="/trash.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <ToolBar>
+            <Button x:Name="VaultClose" Content="Close" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <Button x:Name="VaultRename" Content="Rename" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <Button x:Name="VaultFind" Content="Find" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </ToolBar>
+        <Grid RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="140" MinWidth="0" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            <ScrollViewer Grid.Column="0" HorizontalContentAlignment="Stretch" VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="Tags" Orientation="Vertical"/>
+            </ScrollViewer>
+            <GridSplitter Width="5" HorizontalAlignment="Left" Grid.Column="1" Focusable="False"/>
+            <Grid Grid.Column="1" Margin="5,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="347*"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <ScrollViewer Grid.Row="0" HorizontalContentAlignment="Stretch" Grid.RowSpan="2" VerticalScrollBarVisibility="Auto">
+                    <WrapPanel x:Name="Images"/>
+                </ScrollViewer>
+                <StackPanel x:Name="Pages" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center"/>
+            </Grid>
+            <GridSplitter Width="5" Grid.Column="2" HorizontalAlignment="Left" Focusable="False"/>
+
+            <ScrollViewer Grid.Column="2" HorizontalContentAlignment="Stretch" VerticalScrollBarVisibility="Auto" Margin="5,0,0,0">
+                <StackPanel x:Name="FileTags" Orientation="Vertical"/>
+            </ScrollViewer>
+
+            
+            <Grid Grid.Column="1" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="60">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="SizeUp" Content="+"/>
+                <Button x:Name="SizeDown" Content="-" Grid.Column="1"/>
+            </Grid>
+        </Grid>
+        <StatusBar Grid.Row="2" Focusable="False">
+            <Label x:Name="TrackPage" Content="5" Margin="0,-5,0,0"/>
+            <Label x:Name="TrackVaultCacheCapacity" Content="Label" Margin="0,-5,0,0"/>
+            <Label x:Name="TrackThumbnailCapacity" Content="Label" Margin="0,-5,0,0"/>
+            <Label x:Name="TrackFilesCount" Content="Label" Margin="0,-5,0,0"/>
+            <Label x:Name="TrackVaultName" Content="Label" Margin="0,-5,0,0"/>
+            <Label x:Name="TrackSize" Content="Label" Margin="0,-5,0,0"/>
+        </StatusBar>
+        <Button Content="Button" HorizontalAlignment="Left" Height="0" Margin="165,207,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

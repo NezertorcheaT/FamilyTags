@@ -1,0 +1,27 @@
+﻿<Window x:Class="View.VaultsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:View"
+        mc:Ignorable="d"
+        Title="Убожища" Height="300" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="/trash.png">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="277*"/>
+            <ColumnDefinition Width="123*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer HorizontalContentAlignment="Stretch" VerticalScrollBarVisibility="Auto" Margin="0,0,5,0">
+            <StackPanel x:Name="Paths"/>
+        </ScrollViewer>
+
+        <GridSplitter Width="5"/>
+        <StackPanel Grid.Column="1">
+            <Button x:Name="NewVault" Content="Новое" Margin="5,5,5,0"/>
+            <Button x:Name="OpenVault" Content="Открыть" Margin="5,5,5,0"/>
+            <Button x:Name="RecentVault" Content="Последнее" Margin="5,5,5,0"/>
+            <Button x:Name="Forget" Content="Забыть" Margin="5,5,5,0"/>
+        </StackPanel>
+
+    </Grid>
+</Window>
