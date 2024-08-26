@@ -27,6 +27,12 @@ namespace View
             set => _currentFile = value.FilePath;
         }
 
+        private int ThumbnailSize
+        {
+            get => _size;
+            set => _size = Math.Max(value, -7);
+        }
+
         private int _size;
         private int _sizeMultiplier = 10;
         private int _pageCount = 50;
@@ -72,13 +78,13 @@ namespace View
             };
             SizeUp.Click += (s, e) =>
             {
-                _size++;
+                ThumbnailSize++;
                 RebuildImages();
                 UpdateStatusBar();
             };
             SizeDown.Click += (s, e) =>
             {
-                _size--;
+                ThumbnailSize--;
                 RebuildImages();
                 UpdateStatusBar();
             };
@@ -98,12 +104,12 @@ namespace View
 
         private void UpdateStatusBar()
         {
-            TrackPage.Content = $"Page: {_currentPage}/{Vault.Current.NotCachedPaths.Count() / _pageCount}";
-            TrackFilesCount.Content = $"Files count: {Vault.Current.NotCachedPaths.Count()}";
-            TrackThumbnailCapacity.Content = $"Thumbnail cache capacity: {_thumbnailCache.Count}";
-            TrackVaultCacheCapacity.Content = $"Vault cache capacity: {Vault.Current.CacheCapacity}";
-            TrackVaultName.Content = $"Vault name: {Vault.Current.Name}";
-            TrackSize.Content = $"Size: {_size}";
+            TrackPage.Content = $"Страница: {_currentPage}/{Vault.Current.NotCachedPaths.Count() / _pageCount}";
+            TrackFilesCount.Content = $"Кол-во файлов: {Vault.Current.NotCachedPaths.Count()}";
+            TrackThumbnailCapacity.Content = $"Макс. кеш предпросмотра: {_thumbnailCache.Count}";
+            TrackVaultCacheCapacity.Content = $"Макс. кеш убежища: {Vault.Current.CacheCapacity}";
+            TrackVaultName.Content = $"Имя убежища: {Vault.Current.Name}";
+            TrackSize.Content = $"Увеличение: {ThumbnailSize}";
         }
 
         private BitmapSource CheckThumbnail(string file)
@@ -182,12 +188,12 @@ namespace View
                 var fullFilePath = metaFile.FilePath;
                 Console.WriteLine(fullFilePath);
                 var filePreview = new FilePreview();
-                filePreview.MaxWidth += _size * _sizeMultiplier;
-                filePreview.MinWidth += _size * _sizeMultiplier;
-                filePreview.Width += _size * _sizeMultiplier;
-                filePreview.MaxHeight += _size * _sizeMultiplier;
-                filePreview.MinHeight += _size * _sizeMultiplier;
-                filePreview.Height += _size * _sizeMultiplier;
+                filePreview.MaxWidth += ThumbnailSize * _sizeMultiplier;
+                filePreview.MinWidth += ThumbnailSize * _sizeMultiplier;
+                filePreview.Width += ThumbnailSize * _sizeMultiplier;
+                filePreview.MaxHeight += ThumbnailSize * _sizeMultiplier;
+                filePreview.MinHeight += ThumbnailSize * _sizeMultiplier;
+                filePreview.Height += ThumbnailSize * _sizeMultiplier;
                 filePreview.B.Click += (s, e) =>
                 {
                     CurrentFile = metaFile;
@@ -204,8 +210,8 @@ namespace View
                 var shellThumb = CheckThumbnail(fullFilePath);
                 filePreview.Label.Content = Path.GetFileName(fullFilePath);
                 filePreview.Image.Source = shellThumb;
-                filePreview.Image.Height += _size * _sizeMultiplier;
-                filePreview.Image.Width += _size * _sizeMultiplier;
+                filePreview.Image.Height += ThumbnailSize * _sizeMultiplier;
+                filePreview.Image.Width += ThumbnailSize * _sizeMultiplier;
 
                 Images.Children.Add(filePreview);
             }
