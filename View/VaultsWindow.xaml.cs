@@ -60,6 +60,7 @@ namespace View
                 if (result is null || result is false) return;
 
                 Vault.NewVaultFile(dialog.FolderName);
+                Open(Path.Combine(dialog.FolderName, Vault.VaultFileType));
             };
             Forget.Click += (s, e) =>
             {
